@@ -1,0 +1,12 @@
+{
+  "name": "academic-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static bilingual academic homepage for Mengfei Sun.",
+  "scripts": {
+    "check:ui": "node scripts/check-homepage.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
