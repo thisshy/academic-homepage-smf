@@ -31,15 +31,15 @@ async function launchBrowser() {
   const desktop = await page.evaluate(() => ({
     publications: document.querySelectorAll(".publication-card").length,
     horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    heroLoaded: document.querySelector(".hero-visual img")?.complete || false,
-    profileLoaded: document.querySelector(".identity-line img")?.complete || false,
+    heroLoaded: document.querySelector(".hero-avatar")?.complete || false,
+    profileLoaded: document.querySelector(".hero-avatar")?.complete || false,
   }));
 
   await page.click('[data-lang-switch="en"]');
   const english = await page.evaluate(() => ({
     lang: document.documentElement.lang,
     navResearch: document.querySelector('[data-i18n="navResearch"]').textContent,
-    emailMe: document.querySelector('[data-i18n="emailMe"]').textContent,
+    ctaResearch: document.querySelector('[data-i18n="ctaResearch"]').textContent,
   }));
 
   await page.click('[data-filter="journal"]');
