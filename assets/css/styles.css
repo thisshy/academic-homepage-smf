@@ -325,14 +325,14 @@ h1 small {
   align-self: stretch;
   display: flex;
   align-items: center;
+  min-height: 430px;
 }
 
 .hero-visual img {
+  display: block;
   width: 100%;
-  min-height: 430px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+  height: auto;
+  object-fit: contain;
 }
 
 .section {
@@ -708,7 +708,7 @@ h1 small {
     padding: 44px 0 54px;
   }
 
-  .hero-visual img {
+  .hero-visual {
     min-height: 320px;
   }
 
