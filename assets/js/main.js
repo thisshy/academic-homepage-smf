@@ -2,7 +2,6 @@ const translations = {
   zh: {
     navResearch: "研究方向",
     navPublications: "论文",
-    navProjects: "项目",
     navCv: "经历",
     navContact: "联系",
     filterAll: "全部",
@@ -14,7 +13,6 @@ const translations = {
   en: {
     navResearch: "Research",
     navPublications: "Publications",
-    navProjects: "Projects",
     navCv: "CV",
     navContact: "Contact",
     filterAll: "All",
