@@ -245,10 +245,11 @@ button {
 }
 
 .identity-line img {
-  width: 136px;
-  height: 136px;
-  object-fit: cover;
-  object-position: center top;
+  width: 164px;
+  height: 164px;
+  background: #fff;
+  object-fit: contain;
+  object-position: center center;
   border-radius: 50%;
   border: 1px solid var(--line);
   box-shadow: 0 18px 38px rgba(17, 25, 35, 0.1);
@@ -726,8 +727,8 @@ h1 small {
   }
 
   .identity-line img {
-    width: 112px;
-    height: 112px;
+    width: 136px;
+    height: 136px;
   }
 
   h1 {
