@@ -154,8 +154,7 @@ function renderPublications() {
         .filter(Boolean)
         .join("");
 
-      const dateLabel = currentLang === "zh" ? "发表/预印本日期" : "Publication/preprint date";
-      const sourceLabel = translations[currentLang].source;
+      const dateLabel = currentLang === "zh" ? "日期" : "Date";
 
       return `
         <article class="publication-card" data-type="${publication.type}">
@@ -163,7 +162,7 @@ function renderPublications() {
           <div>
             <h3 class="publication-title">${publication.title}</h3>
             <p class="publication-meta">${publication.authors}</p>
-            <p class="publication-meta">${publication.venue} · ${dateLabel}: ${publication.date} · ${sourceLabel}: INSPIRE</p>
+            <p class="publication-venue">${publication.venue} · ${dateLabel}: ${publication.date}</p>
           </div>
           <div class="publication-links">${links}</div>
         </article>
