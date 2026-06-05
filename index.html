@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>孙孟飞| Gravitational-Wave Machine Learning</title>
+    <title>孙孟飞 / Mengfei Sun - Gravitational-Wave Machine Learning</title>
     <meta
       name="description"
-      content="孙孟飞的个人学术主页，研究方向为双黑洞、双中子星等双星系统产生的引力波数据，以及深度学习在天文数据分析中的应用。"
+      content="孙孟飞的个人学术主页，研究方向包括引力波机器学习、波形生成与重构、快速参数估计、信号识别以及双中子星内部物理。"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
@@ -16,23 +16,21 @@
     <header class="site-header" id="home">
       <div class="header-inner">
         <a class="brand" href="#home" aria-label="Mengfei Sun homepage">
-          <span class="brand-mark" aria-hidden="true">
-            <span></span>
-          </span>
-          <span>
+          <span class="brand-mark" aria-hidden="true"><span></span></span>
+          <span class="brand-text">
             <strong data-lang="zh">孙孟飞</strong>
             <strong data-lang="en">Mengfei Sun</strong>
+            <em>GW · ML · Astrophysics</em>
           </span>
         </a>
 
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#research" data-i18n="navResearch">研究方向</a>
           <a href="#publications" data-i18n="navPublications">论文</a>
-          <a href="#cv" data-i18n="navCv">经历</a>
           <a href="#contact" data-i18n="navContact">联系</a>
         </nav>
 
-        <div class="header-actions">
+        <div class="header-actions" aria-label="Language switcher">
           <button class="lang-button active" type="button" data-lang-switch="zh">中文</button>
           <button class="lang-button" type="button" data-lang-switch="en">EN</button>
         </div>
@@ -44,8 +42,9 @@
         <div class="hero-grid">
           <div class="hero-copy">
             <div class="identity-line">
-              <img src="assets/img/profile-photo-round.png" alt="孙孟飞证件照" />
+              <img src="assets/img/profile-photo-round.png" alt="孙孟飞个人照片" />
               <div>
+                <p class="eyebrow">Academic Homepage</p>
                 <h1>
                   <span data-lang="zh">孙孟飞</span>
                   <span data-lang="en">Mengfei Sun</span>
@@ -56,10 +55,10 @@
             </div>
 
             <p class="lead" data-lang="zh">
-              面向双黑洞、双中子星等致密双星系统，研究深度学习在引力波波形建模、信号重构、快速参数估计和物理解释中的应用。
+              面向双黑洞、双中子星和中等质量黑洞并合等致密双星系统，研究深度学习在引力波波形生成、信号重构、快速参数估计和物理解释中的应用。
             </p>
             <p class="lead" data-lang="en">
-              I work on deep-learning methods for compact-binary gravitational-wave data, with emphasis on waveform modeling, signal reconstruction, fast inference, and physical interpretation.
+              I develop deep-learning methods for compact-binary gravitational-wave data, with emphasis on waveform generation, signal reconstruction, fast inference, and physically interpretable analysis.
             </p>
 
             <div class="hero-highlights" aria-label="Research keywords">
@@ -89,34 +88,22 @@
             <span class="section-number">01</span>
             <h2 data-lang="zh">研究对象</h2>
             <h2 data-lang="en">Systems</h2>
-            <p data-lang="zh">
-              以双黑洞、双中子星和中等质量黑洞并合等致密双星系统的引力波数据为主要对象。
-            </p>
-            <p data-lang="en">
-              Gravitational-wave data from BBH, BNS, and intermediate-mass black hole mergers provide the main physical systems.
-            </p>
+            <p data-lang="zh">以双黑洞、双中子星和中等质量黑洞并合等致密双星系统的引力波数据为主要对象。</p>
+            <p data-lang="en">Gravitational-wave data from BBH, BNS, and intermediate-mass black hole mergers provide the main physical systems.</p>
           </article>
           <article>
             <span class="section-number">02</span>
             <h2 data-lang="zh">方法主线</h2>
             <h2 data-lang="en">Methods</h2>
-            <p data-lang="zh">
-              结合物理建模与深度学习，处理波形生成、信号识别、重构去噪和统计推断问题。
-            </p>
-            <p data-lang="en">
-              Physics-based modeling is combined with deep learning for waveform generation, detection, reconstruction, denoising, and inference.
-            </p>
+            <p data-lang="zh">结合物理建模与深度学习，处理波形生成、信号识别、重构去噪和统计推断问题。</p>
+            <p data-lang="en">Physics-based modeling is combined with deep learning for waveform generation, detection, reconstruction, denoising, and inference.</p>
           </article>
           <article>
             <span class="section-number">03</span>
             <h2 data-lang="zh">物理目标</h2>
             <h2 data-lang="en">Physics</h2>
-            <p data-lang="zh">
-              从潮汐效应、g-mode 共振和多频段观测中提取可解释的中子星内部物理信息。
-            </p>
-            <p data-lang="en">
-              Interpretable workflows are used to connect tidal effects, g-mode resonance, and multiband observations with neutron-star physics.
-            </p>
+            <p data-lang="zh">从潮汐效应、g-mode 共振和多频段观测中提取可解释的中子星内部物理信息。</p>
+            <p data-lang="en">Interpretable workflows connect tidal effects, g-mode resonance, and multiband observations with neutron-star physics.</p>
           </article>
         </div>
       </section>
@@ -127,29 +114,34 @@
             <p class="section-kicker">Research</p>
             <h2 data-lang="zh">研究方向</h2>
             <h2 data-lang="en">Research Directions</h2>
-            <p data-lang="zh">围绕真实观测场景，把机器学习模型放到可解释、可验证的引力波分析流程中。</p>
+            <p data-lang="zh">围绕真实观测场景，将机器学习模型放入可解释、可检验的引力波分析流程中。</p>
             <p data-lang="en">The common thread is to place machine-learning models inside interpretable and testable gravitational-wave analysis workflows.</p>
           </div>
+
           <div class="research-list">
             <article>
+              <span>01</span>
               <h3 data-lang="zh">波形生成、重构与去噪</h3>
               <h3 data-lang="en">Waveform Generation, Reconstruction, and Denoising</h3>
               <p data-lang="zh">利用深度学习模型学习致密双星波形族的低维结构，实现快速波形生成、信号重构和噪声背景下的稳健恢复。</p>
               <p data-lang="en">Learning compact representations of waveform families for fast generation, signal reconstruction, and robust recovery under noisy observational conditions.</p>
             </article>
             <article>
+              <span>02</span>
               <h3 data-lang="zh">参数估计与不确定性量化</h3>
               <h3 data-lang="en">Parameter Estimation and Uncertainty Quantification</h3>
               <p data-lang="zh">面向 BNS 和中等质量黑洞并合，构建快速参数估计流程，并关注后验结构、退化关系和模型不确定性的表达。</p>
               <p data-lang="en">Developing fast inference workflows for BNS and intermediate-mass black hole mergers, with attention to posterior structure, degeneracies, and model uncertainty.</p>
             </article>
             <article>
+              <span>03</span>
               <h3 data-lang="zh">信号识别、分类与多频段探测</h3>
               <h3 data-lang="en">Signal Identification, Classification, and Multiband Detection</h3>
               <p data-lang="zh">研究深度学习在引力波信号识别、随机引力波背景分类、多频段透镜化信号探测等任务中的应用。</p>
               <p data-lang="en">Applying deep learning to gravitational-wave signal recognition, stochastic background classification, and multiband detection of lensed events.</p>
             </article>
             <article>
+              <span>04</span>
               <h3 data-lang="zh">潮汐效应、g-mode 共振与状态方程</h3>
               <h3 data-lang="en">Tidal Effects, g-mode Resonance, and Equation of State</h3>
               <p data-lang="zh">围绕中子星内部物理建立可解释的机器学习分析流程，从精细波形效应中提取潮汐参数、共振特征和状态方程信息。</p>
@@ -163,72 +155,10 @@
         <div class="section-inner">
           <div class="section-heading compact-heading">
             <p class="section-kicker">Publications</p>
-            <h2 data-lang="zh">论文与预印本</h2>
-            <h2 data-lang="en">Publications and Preprints</h2>
-          </div>
-          <div class="publication-toolbar">
-            <button class="filter-button active" type="button" data-filter="all" data-i18n="filterAll">全部</button>
-            <button class="filter-button" type="button" data-filter="journal" data-i18n="filterJournal">期刊论文</button>
-            <button class="filter-button" type="button" data-filter="preprint" data-i18n="filterPreprint">预印本</button>
+            <h2 data-lang="zh">论文</h2>
+            <h2 data-lang="en">Publications</h2>
           </div>
           <div class="publication-list" id="publication-list" aria-live="polite"></div>
-        </div>
-      </section>
-
-      <section class="section cv-section" id="cv">
-        <div class="section-inner cv-grid">
-          <div>
-            <div class="section-heading">
-              <p class="section-kicker">CV</p>
-              <h2 data-lang="zh">教育经历</h2>
-              <h2 data-lang="en">Education</h2>
-            </div>
-            <div class="timeline">
-              <article>
-                <span data-lang="zh">博士</span>
-                <span data-lang="en">PhD</span>
-                <h3 data-lang="zh">重庆大学</h3>
-                <h3 data-lang="en">Chongqing University</h3>
-                <p data-lang="zh">机器学习与引力波天体物理方向</p>
-                <p data-lang="en">Machine learning and gravitational-wave astrophysics</p>
-              </article>
-              <article>
-                <span data-lang="zh">硕士</span>
-                <span data-lang="en">Master</span>
-                <h3 data-lang="zh">重庆大学</h3>
-                <h3 data-lang="en">Chongqing University</h3>
-              </article>
-              <article>
-                <span data-lang="zh">本科</span>
-                <span data-lang="en">Bachelor</span>
-                <h3 data-lang="zh">重庆邮电大学</h3>
-                <h3 data-lang="en">Chongqing University of Posts and Telecommunications</h3>
-              </article>
-            </div>
-          </div>
-
-          <aside class="profile-panel">
-            <h2 data-lang="zh">学术资料</h2>
-            <h2 data-lang="en">Academic Profiles</h2>
-            <dl>
-              <div>
-                <dt>Email</dt>
-                <dd><a href="mailto:sunmengfei2@gmail.com">sunmengfei2@gmail.com</a></dd>
-              </div>
-              <div>
-                <dt>GitHub</dt>
-                <dd><a href="https://github.com/thisshy" target="_blank" rel="noreferrer">github.com/thisshy</a></dd>
-              </div>
-              <div>
-                <dt>INSPIRE</dt>
-                <dd><a href="https://inspirehep.net/authors/2806423?ui-citation-summary=true" target="_blank" rel="noreferrer">Author profile</a></dd>
-              </div>
-              <div>
-                <dt>Google Scholar</dt>
-                <dd><a href="https://scholar.google.com.hk/citations?view_op=list_works&hl=zh-CN&user=oBhO_U_H5bsC" target="_blank" rel="noreferrer">Citation profile</a></dd>
-              </div>
-            </dl>
-          </aside>
         </div>
       </section>
 
@@ -238,12 +168,8 @@
             <p class="section-kicker">Contact</p>
             <h2 data-lang="zh">联系方式</h2>
             <h2 data-lang="en">Contact</h2>
-            <p data-lang="zh">
-              欢迎围绕引力波数据分析、深度学习波形建模、快速参数估计、双中子星内部物理和空间引力波探测等方向交流。
-            </p>
-            <p data-lang="en">
-              I welcome discussions on gravitational-wave data analysis, deep-learning waveform modeling, fast parameter estimation, binary-neutron-star internal physics, and space-based gravitational-wave detection.
-            </p>
+            <p data-lang="zh">欢迎围绕引力波数据分析、深度学习波形建模、快速参数估计、双中子星内部物理和空间引力波探测等方向交流。</p>
+            <p data-lang="en">I welcome discussions on gravitational-wave data analysis, deep-learning waveform modeling, fast parameter estimation, binary-neutron-star internal physics, and space-based gravitational-wave detection.</p>
           </div>
           <div class="contact-actions">
             <a class="primary-link" href="mailto:sunmengfei2@gmail.com" data-i18n="emailMe">发送邮件</a>

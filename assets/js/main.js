@@ -2,24 +2,18 @@ const translations = {
   zh: {
     navResearch: "研究方向",
     navPublications: "论文",
-    navCv: "经历",
     navContact: "联系",
-    filterAll: "全部",
-    filterJournal: "期刊论文",
-    filterPreprint: "预印本",
     emailMe: "发送邮件",
     source: "来源",
+    date: "日期",
   },
   en: {
     navResearch: "Research",
     navPublications: "Publications",
-    navCv: "CV",
     navContact: "Contact",
-    filterAll: "All",
-    filterJournal: "Journal Articles",
-    filterPreprint: "Preprints",
     emailMe: "Email Me",
     source: "Source",
+    date: "Date",
   },
 };
 
@@ -115,7 +109,6 @@ const publications = [
 ];
 
 let currentLang = localStorage.getItem("site-lang") || "zh";
-let currentFilter = "all";
 
 function setLanguage(lang) {
   currentLang = lang;
@@ -141,7 +134,6 @@ function renderPublications() {
   if (!list) return;
 
   const filtered = publications
-    .filter((publication) => currentFilter === "all" || publication.type === currentFilter)
     .sort((a, b) => b.date.localeCompare(a.date));
 
   list.innerHTML = filtered
@@ -154,12 +146,12 @@ function renderPublications() {
         .filter(Boolean)
         .join("");
 
-      const dateLabel = currentLang === "zh" ? "日期" : "Date";
+      const dateLabel = translations[currentLang].date;
 
       return `
         <article class="publication-card" data-type="${publication.type}">
           <div class="publication-year">${publication.year}</div>
-          <div>
+          <div class="publication-content">
             <h3 class="publication-title">${publication.title}</h3>
             <p class="publication-meta">${publication.authors}</p>
             <p class="publication-venue">${publication.venue} · ${dateLabel}: ${publication.date}</p>
@@ -173,16 +165,6 @@ function renderPublications() {
 
 document.querySelectorAll("[data-lang-switch]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.langSwitch));
-});
-
-document.querySelectorAll("[data-filter]").forEach((button) => {
-  button.addEventListener("click", () => {
-    currentFilter = button.dataset.filter;
-    document.querySelectorAll("[data-filter]").forEach((item) => {
-      item.classList.toggle("active", item === button);
-    });
-    renderPublications();
-  });
 });
 
 setLanguage(currentLang);

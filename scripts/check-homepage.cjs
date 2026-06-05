@@ -40,12 +40,10 @@ async function launchBrowser() {
     lang: document.documentElement.lang,
     navResearch: document.querySelector('[data-i18n="navResearch"]').textContent,
     emailMe: document.querySelector('[data-i18n="emailMe"]').textContent,
+    publicationHeading: document.querySelector("#publications h2:not([data-lang='zh'])").textContent,
+    hasFilters: Boolean(document.querySelector(".publication-toolbar")),
+    hasCv: Boolean(document.querySelector("#cv")),
   }));
-
-  await page.click('[data-filter="journal"]');
-  const journalCount = await page.locator(".publication-card").count();
-  await page.click('[data-filter="preprint"]');
-  const preprintCount = await page.locator(".publication-card").count();
 
   const mobile = await browser.newPage({ viewport: { width: 390, height: 900 }, isMobile: true });
   const mobileErrors = [];
@@ -69,8 +67,6 @@ async function launchBrowser() {
     url,
     desktop,
     english,
-    journalCount,
-    preprintCount,
     mobile: mobileLayout,
     errors,
     mobileErrors,
@@ -83,8 +79,8 @@ async function launchBrowser() {
     errors.length ||
     mobileErrors.length ||
     desktop.publications !== 8 ||
-    journalCount !== 6 ||
-    preprintCount !== 2 ||
+    english.hasFilters ||
+    english.hasCv ||
     desktop.horizontalOverflow ||
     mobileLayout.horizontalOverflow ||
     !desktop.heroLoaded ||
