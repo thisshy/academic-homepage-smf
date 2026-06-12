@@ -227,65 +227,15 @@ function initCosmicCanvas() {
     canvas.height = Math.floor(height * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = width < 700 ? 110 : 230;
-    stars = Array.from({ length: count }, (_, index) => ({
+    const count = width < 700 ? 70 : 140;
+    stars = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 2.2 + 0.35,
-      vx: (Math.random() - 0.5) * 0.34,
-      vy: (Math.random() - 0.5) * 0.26,
+      r: Math.random() * 1.7 + 0.3,
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.14,
       phase: Math.random() * Math.PI * 2,
-      link: index % 4 === 0,
     }));
-  }
-
-  function drawGrid(time) {
-    ctx.save();
-    ctx.globalAlpha = 0.28;
-    ctx.strokeStyle = "rgba(85, 225, 236, 0.42)";
-    ctx.lineWidth = 1;
-
-    const gap = width < 700 ? 54 : 72;
-    const drift = (time * 0.018) % gap;
-    for (let x = -gap + drift; x < width + gap; x += gap) {
-      ctx.beginPath();
-      ctx.moveTo(x, 0);
-      ctx.lineTo(x + width * 0.12, height);
-      ctx.stroke();
-    }
-    for (let y = -gap; y < height + gap; y += gap) {
-      ctx.beginPath();
-      ctx.moveTo(0, y + drift * 0.4);
-      ctx.lineTo(width, y - drift * 0.2);
-      ctx.stroke();
-    }
-    ctx.restore();
-  }
-
-  function drawWave(time) {
-    const center = height * (width < 700 ? 0.24 : 0.43);
-    const left = -40;
-    const right = width + 40;
-
-    ctx.save();
-    ctx.lineWidth = width < 700 ? 2.2 : 3.4;
-    ctx.strokeStyle = "rgba(132, 247, 255, 0.92)";
-    ctx.shadowColor = "rgba(85, 225, 236, 0.8)";
-    ctx.shadowBlur = 30;
-    ctx.beginPath();
-
-    for (let x = left; x <= right; x += 4) {
-      const progress = x / width;
-      const envelope = 0.2 + Math.pow(Math.max(progress, 0), 2.4) * 1.1;
-      const amp = Math.min(132, envelope * (width < 700 ? 56 : 112));
-      const freq = 0.026 + progress * 0.11;
-      const y = center + Math.sin(x * freq - time * 0.007) * amp * Math.sin(Math.PI * Math.min(1, Math.max(0, progress)));
-      if (x === left) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-
-    ctx.stroke();
-    ctx.restore();
   }
 
   function drawParticles(time) {
@@ -307,65 +257,13 @@ function initCosmicCanvas() {
       ctx.fill();
     }
 
-    ctx.globalAlpha = width < 700 ? 0.22 : 0.34;
-    ctx.strokeStyle = "rgba(132, 247, 255, 0.46)";
-    ctx.lineWidth = 1;
-    for (let i = 0; i < stars.length; i += 4) {
-      const a = stars[i];
-      for (let j = i + 4; j < Math.min(stars.length, i + 28); j += 4) {
-        const b = stars[j];
-        const dist = Math.hypot(a.x - b.x, a.y - b.y);
-        if (dist < 170) {
-          ctx.beginPath();
-          ctx.moveTo(a.x, a.y);
-          ctx.lineTo(b.x, b.y);
-          ctx.stroke();
-        }
-      }
-    }
-    ctx.restore();
-  }
-
-  function drawDetector(time) {
-    const cx = width * 0.78 + Math.sin(time * 0.0015) * 8;
-    const cy = height * 0.76;
-    const size = width < 700 ? 88 : 142;
-
-    ctx.save();
-    ctx.strokeStyle = "rgba(214, 183, 114, 0.5)";
-    ctx.fillStyle = "rgba(214, 183, 114, 0.9)";
-    ctx.lineWidth = 1;
-    ctx.shadowColor = "rgba(214, 183, 114, 0.45)";
-    ctx.shadowBlur = 16;
-    const points = [
-      [cx, cy - size * 0.55],
-      [cx - size * 0.62, cy + size * 0.42],
-      [cx + size * 0.7, cy + size * 0.34],
-    ];
-
-    ctx.beginPath();
-    points.forEach(([x, y], index) => (index ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
-    ctx.closePath();
-    ctx.stroke();
-
-    points.forEach(([x, y]) => {
-      ctx.beginPath();
-      ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(x, y, 14 + Math.sin(time * 0.004) * 3, 0, Math.PI * 2);
-      ctx.stroke();
-    });
     ctx.restore();
   }
 
   function frame(now) {
     const time = now - start;
     ctx.clearRect(0, 0, width, height);
-    drawGrid(time);
     drawParticles(time);
-    drawWave(time);
-    drawDetector(time);
     raf = requestAnimationFrame(frame);
   }
 
