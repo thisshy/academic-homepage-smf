@@ -33,7 +33,7 @@ body {
   background:
     linear-gradient(90deg, rgba(2, 7, 10, 0.72) 0%, rgba(2, 7, 10, 0.48) 38%, rgba(2, 7, 10, 0.08) 100%),
     linear-gradient(180deg, rgba(2, 7, 10, 0.08) 0%, rgba(2, 7, 10, 0.5) 100%),
-    url("../img/earth-cosmos-full.png") center top / cover fixed,
+    url("../img/hero-earth-observatory.png") center top / cover fixed,
     var(--bg);
   font-family: Inter, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   font-size: 16px;
@@ -267,7 +267,8 @@ p {
   z-index: -4;
   object-fit: cover;
   object-position: center center;
-  opacity: 0.96;
+  opacity: 1;
+  filter: saturate(1.08) contrast(1.04) brightness(1.08);
 }
 
 .hero-backdrop-merger {
@@ -297,10 +298,10 @@ p {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 20% 34%, rgba(85, 225, 236, 0.1), transparent 30%),
-    radial-gradient(circle at 78% 18%, rgba(214, 183, 114, 0.07), transparent 30%),
-    linear-gradient(90deg, rgba(3, 9, 13, 0.72) 0%, rgba(3, 9, 13, 0.42) 34%, rgba(3, 9, 13, 0.04) 72%, rgba(3, 9, 13, 0.08) 100%),
-    linear-gradient(180deg, rgba(3, 9, 13, 0.12), rgba(3, 9, 13, 0.38));
+    radial-gradient(circle at 20% 34%, rgba(85, 225, 236, 0.06), transparent 30%),
+    radial-gradient(circle at 78% 18%, rgba(214, 183, 114, 0.05), transparent 30%),
+    linear-gradient(90deg, rgba(3, 9, 13, 0.76) 0%, rgba(3, 9, 13, 0.5) 30%, rgba(3, 9, 13, 0.08) 68%, rgba(3, 9, 13, 0.02) 100%),
+    linear-gradient(180deg, rgba(3, 9, 13, 0.04), rgba(3, 9, 13, 0.2));
 }
 
 .hero-noise::after {
@@ -851,6 +852,53 @@ h1 {
   transform: translateY(-2px);
 }
 
+.visual-section {
+  padding: 28px 0 74px;
+  background:
+    linear-gradient(180deg, rgba(5, 15, 20, 0.18), rgba(5, 15, 20, 0.56));
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.science-visual {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(132, 220, 230, 0.2);
+  border-radius: var(--radius);
+  background: rgba(3, 12, 17, 0.42);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.science-visual-wide {
+  min-height: 0;
+}
+
+.science-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, transparent 58%, rgba(2, 8, 12, 0.18)),
+    linear-gradient(90deg, rgba(2, 8, 12, 0.18), transparent 38%, rgba(2, 8, 12, 0.08));
+}
+
+.science-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(1.06) contrast(1.06) brightness(1.02);
+}
+
 .publication-section {
   background:
     radial-gradient(circle at 82% 16%, rgba(85, 225, 236, 0.13), transparent 26%),
@@ -1139,6 +1187,7 @@ h1 {
 
   .summary-grid,
   .research-list,
+  .visual-grid,
   .compact-heading,
   .contact-grid {
     grid-template-columns: 1fr;
@@ -1243,6 +1292,14 @@ h1 {
 
   .intro-band {
     padding: 28px 0;
+  }
+
+  .visual-section {
+    padding: 20px 0 54px;
+  }
+
+  .science-visual {
+    aspect-ratio: 16 / 9;
   }
 
   .summary-grid article,
