@@ -14,6 +14,7 @@ async function launchBrowser() {
 (async () => {
   const root = path.resolve(__dirname, "..");
   const url = pathToFileURL(path.join(root, "index.html")).href;
+  const publicationsUrl = pathToFileURL(path.join(root, "publications.html")).href;
   const qaDir = path.join(root, "qa");
   fs.mkdirSync(qaDir, { recursive: true });
 
@@ -31,6 +32,7 @@ async function launchBrowser() {
 
   const desktop = await page.evaluate(() => ({
     publications: document.querySelectorAll(".publication-card").length,
+    hasPublicationPortal: Boolean(document.querySelector(".publication-portal")),
     horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     heroLoaded: document.querySelector(".hero-backdrop")?.complete || false,
     profileLoaded: document.querySelector(".identity-line img")?.complete || false,
@@ -76,6 +78,17 @@ async function launchBrowser() {
     scrollWidth: document.documentElement.scrollWidth,
     horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
     publications: document.querySelectorAll(".publication-card").length,
+    hasPublicationPortal: Boolean(document.querySelector(".publication-portal")),
+  }));
+
+  const publicationsPage = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+  await publicationsPage.goto(publicationsUrl, { waitUntil: "networkidle" });
+  await publicationsPage.waitForTimeout(600);
+  await publicationsPage.screenshot({ path: path.join(qaDir, "publications.png"), fullPage: true });
+  const publicationsLayout = await publicationsPage.evaluate(() => ({
+    publications: document.querySelectorAll(".publication-card").length,
+    horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    heading: document.querySelector(".publication-page-heading h1:not([data-lang='en'])")?.textContent || "",
   }));
 
   await browser.close();
@@ -85,9 +98,10 @@ async function launchBrowser() {
     desktop,
     english,
     mobile: mobileLayout,
+    publicationsPage: publicationsLayout,
     errors,
     mobileErrors,
-    screenshots: ["qa/desktop.png", "qa/mobile.png"],
+    screenshots: ["qa/desktop.png", "qa/mobile.png", "qa/publications.png"],
   };
 
   console.log(JSON.stringify(result, null, 2));
@@ -95,11 +109,15 @@ async function launchBrowser() {
   if (
     errors.length ||
     mobileErrors.length ||
-    desktop.publications !== 9 ||
+    desktop.publications !== 0 ||
+    !desktop.hasPublicationPortal ||
+    publicationsLayout.publications !== 9 ||
+    publicationsLayout.horizontalOverflow ||
     english.hasFilters ||
     english.hasCv ||
     desktop.horizontalOverflow ||
     mobileLayout.horizontalOverflow ||
+    !mobileLayout.hasPublicationPortal ||
     !desktop.heroLoaded ||
     !desktop.profileLoaded ||
     !desktop.canvasPainted ||
