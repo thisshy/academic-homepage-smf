@@ -26,13 +26,29 @@ async function launchBrowser() {
   });
 
   await page.goto(url, { waitUntil: "networkidle" });
+  await page.waitForTimeout(600);
   await page.screenshot({ path: path.join(qaDir, "desktop.png"), fullPage: true });
 
   const desktop = await page.evaluate(() => ({
     publications: document.querySelectorAll(".publication-card").length,
     horizontalOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    heroLoaded: document.querySelector(".hero-visual img")?.complete || false,
+    heroLoaded: document.querySelector(".hero-backdrop")?.complete || false,
     profileLoaded: document.querySelector(".identity-line img")?.complete || false,
+    canvasPainted: (() => {
+      const canvas = document.querySelector("#cosmic-canvas");
+      if (!canvas) return false;
+      const ctx = canvas.getContext("2d");
+      const sample = ctx.getImageData(
+        Math.floor(canvas.width * 0.25),
+        Math.floor(canvas.height * 0.25),
+        Math.max(1, Math.floor(canvas.width * 0.5)),
+        Math.max(1, Math.floor(canvas.height * 0.5))
+      ).data;
+      for (let i = 3; i < sample.length; i += 4) {
+        if (sample[i] > 0) return true;
+      }
+      return false;
+    })(),
   }));
 
   await page.click('[data-lang-switch="en"]');
@@ -52,6 +68,7 @@ async function launchBrowser() {
     if (msg.type() === "error") mobileErrors.push(msg.text());
   });
   await mobile.goto(url, { waitUntil: "networkidle" });
+  await mobile.waitForTimeout(600);
   await mobile.screenshot({ path: path.join(qaDir, "mobile.png"), fullPage: true });
 
   const mobileLayout = await mobile.evaluate(() => ({
@@ -78,13 +95,14 @@ async function launchBrowser() {
   if (
     errors.length ||
     mobileErrors.length ||
-    desktop.publications !== 8 ||
+    desktop.publications !== 9 ||
     english.hasFilters ||
     english.hasCv ||
     desktop.horizontalOverflow ||
     mobileLayout.horizontalOverflow ||
     !desktop.heroLoaded ||
     !desktop.profileLoaded ||
+    !desktop.canvasPainted ||
     english.lang !== "en"
   ) {
     process.exit(1);
