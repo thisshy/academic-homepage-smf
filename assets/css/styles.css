@@ -33,7 +33,7 @@ body {
   background:
     linear-gradient(90deg, rgba(2, 7, 10, 0.74) 0%, rgba(2, 7, 10, 0.52) 34%, rgba(2, 7, 10, 0.16) 68%, rgba(2, 7, 10, 0.08) 100%),
     linear-gradient(180deg, rgba(2, 7, 10, 0.08) 0%, rgba(2, 7, 10, 0.34) 52%, rgba(2, 7, 10, 0.42) 100%),
-    url("../img/hero-earth-observatory-body.png") center top / cover,
+    url("../img/cosmic-depthfield.png") center top / cover,
     var(--bg);
   font-family: Inter, "Segoe UI", "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif;
   font-size: clamp(15px, 0.2vw + 14px, 17px);
@@ -269,6 +269,14 @@ p {
   object-position: center center;
   opacity: 1;
   filter: saturate(1.08) contrast(1.04) brightness(1.08);
+}
+
+.hero-backdrop-earth {
+  object-fit: contain;
+  object-position: center bottom;
+  opacity: 0.94;
+  filter: saturate(1.06) contrast(1.02) brightness(1.02);
+  transform: scale(1.02);
 }
 
 .hero-backdrop-merger {
