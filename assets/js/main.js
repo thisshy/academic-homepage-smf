@@ -181,6 +181,12 @@ function setLanguage(lang) {
   });
 
   renderPublications();
+  updatePublicationCount();
+}
+
+function updatePublicationCount() {
+  const count = document.querySelector("#publication-count");
+  if (count) count.textContent = publications.length;
 }
 
 function renderPublications() {

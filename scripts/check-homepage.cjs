@@ -15,6 +15,8 @@ async function launchBrowser() {
   const root = path.resolve(__dirname, "..");
   const url = pathToFileURL(path.join(root, "index.html")).href;
   const publicationsUrl = pathToFileURL(path.join(root, "publications.html")).href;
+  const mainJs = fs.readFileSync(path.join(root, "assets", "js", "main.js"), "utf8");
+  const expectedPublications = (mainJs.match(/^\s*year:\s*"/gm) || []).length;
   const qaDir = path.join(root, "qa");
   fs.mkdirSync(qaDir, { recursive: true });
 
@@ -111,7 +113,7 @@ async function launchBrowser() {
     mobileErrors.length ||
     desktop.publications !== 0 ||
     !desktop.hasPublicationPortal ||
-    publicationsLayout.publications !== 9 ||
+    publicationsLayout.publications !== expectedPublications ||
     publicationsLayout.horizontalOverflow ||
     english.hasFilters ||
     english.hasCv ||
