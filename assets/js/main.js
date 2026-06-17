@@ -18,6 +18,20 @@ const translations = {
 const publications = [
   {
     year: "2026",
+    title: "Constraining Kerr supermassive black hole properties using gravitational waves from inspiraling stellar-mass binary black holes",
+    venue: {
+      zh: "Physical Review D 113, 124024 (2026)",
+      en: "Physical Review D 113, 124024 (2026)",
+    },
+    date: "2026-06-11",
+    authors: "Jie Wu, Jintao Yao, Mengfei Sun, Jin Li, Zhoujian Cao",
+    url: "https://inspirehep.net/literature/3167941",
+    doi: "https://doi.org/10.1103/c4jy-7b9k",
+    arxiv: "https://arxiv.org/abs/2606.12784",
+    type: "journal",
+  },
+  {
+    year: "2026",
     title: "Identifiability of g-mode Resonances in Eccentric Binary Neutron Stars with Multidetector Observations",
     venue: {
       zh: "arXiv:2606.11959; PRD 在投 (2026)",
