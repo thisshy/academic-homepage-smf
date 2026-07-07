@@ -18,6 +18,34 @@ const translations = {
 const publications = [
   {
     year: "2026",
+    title: "Effects of Solar Wind Plasma Noise on Stochastic Gravitational Wave Background Searches with the LISA-Taiji Network",
+    venue: {
+      zh: "arXiv:2607.05368 (2026)",
+      en: "arXiv:2607.05368 (2026)",
+    },
+    date: "2026-07-06",
+    authors: "Mengfei Sun, Borui Wang, Jie Wu, Jin Li, Shengyi Ye",
+    url: "https://inspirehep.net/literature/3177617",
+    doi: "",
+    arxiv: "https://arxiv.org/abs/2607.05368",
+    type: "preprint",
+  },
+  {
+    year: "2026",
+    title: "Tests of general relativity using analytic derivatives of parametrized post-Einsteinian gravitational waveforms within the Fisher-matrix framework",
+    venue: {
+      zh: "arXiv:2607.04238 (2026)",
+      en: "arXiv:2607.04238 (2026)",
+    },
+    date: "2026-07-05",
+    authors: "Jie Wu, Mengfei Sun, Jin Li",
+    url: "https://inspirehep.net/literature/3177550",
+    doi: "",
+    arxiv: "https://arxiv.org/abs/2607.04238",
+    type: "preprint",
+  },
+  {
+    year: "2026",
     title: "Constraining Kerr supermassive black hole properties using gravitational waves from inspiraling stellar-mass binary black holes",
     venue: {
       zh: "Physical Review D 113, 124024 (2026)",
@@ -39,7 +67,7 @@ const publications = [
     },
     date: "2026-06-10",
     authors: "Mengfei Sun, Jie Wu, Qianning Hu, et al.",
-    url: "",
+    url: "https://inspirehep.net/literature/3167665",
     doi: "",
     arxiv: "https://arxiv.org/abs/2606.11959",
     type: "preprint",
