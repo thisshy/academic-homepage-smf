@@ -8,6 +8,12 @@
       name="description"
       content="孙孟飞的个人学术主页，研究方向包括引力波机器学习、波形生成与重构、快速参数估计、信号识别、双中子星内部物理与随机引力波背景。"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body class="lang-zh">
@@ -16,7 +22,6 @@
     <header class="site-header" id="home">
       <div class="header-inner">
         <a class="brand" href="#home" aria-label="Mengfei Sun homepage">
-          <span class="brand-mark" aria-hidden="true"><span></span></span>
           <span class="brand-text">
             <strong data-lang="zh">孙孟飞</strong>
             <strong data-lang="en">Mengfei Sun</strong>
@@ -26,6 +31,10 @@
 
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="#research" data-i18n="navResearch">研究方向</a>
+          <a href="#science">
+            <span data-lang="zh">科学图景</span>
+            <span data-lang="en">Science</span>
+          </a>
           <a href="publications.html" data-i18n="navPublications">论文</a>
           <a href="#contact" data-i18n="navContact">联系</a>
         </nav>
@@ -39,16 +48,13 @@
 
     <main id="main">
       <section class="hero-section" aria-label="Academic profile">
-        <img class="hero-backdrop hero-backdrop-earth" src="assets/img/hero-earth-full.png" alt="" aria-hidden="true" />
         <canvas class="hero-canvas" id="cosmic-canvas" aria-hidden="true"></canvas>
-        <div class="hero-noise" aria-hidden="true"></div>
-
         <div class="hero-grid">
           <div class="hero-copy">
+            <p class="eyebrow">GW · ML · Compact Binaries</p>
             <div class="identity-line">
               <img src="assets/img/profile-photo-round.png" alt="孙孟飞个人照片" />
               <div>
-                <p class="eyebrow">GW · ML · Compact Binaries</p>
                 <h1>
                   <span data-lang="zh">孙孟飞</span>
                   <span data-lang="en">Mengfei Sun</span>
@@ -79,74 +85,168 @@
               <a href="https://inspirehep.net/authors/2806423?ui-citation-summary=true" target="_blank" rel="noreferrer">INSPIRE</a>
               <a href="https://scholar.google.com.hk/citations?view_op=list_works&hl=zh-CN&user=oBhO_U_H5bsC" target="_blank" rel="noreferrer">Google Scholar</a>
             </div>
+
+            <dl class="hero-facts">
+              <div>
+                <dt data-lang="zh">研究对象</dt>
+                <dt data-lang="en">Systems</dt>
+                <dd>BNS · NSBH · IMBH</dd>
+              </div>
+              <div>
+                <dt data-lang="zh">核心方法</dt>
+                <dt data-lang="en">Methods</dt>
+                <dd>Deep learning · Bayesian inference</dd>
+              </div>
+            </dl>
           </div>
 
+          <figure class="hero-observation">
+            <img
+              src="assets/img/science-tidal-evolution.png"
+              alt="双中子星从旋近、潮汐形变到并合的科学可视化"
+            />
+            <figcaption>
+              <span>Observation 01</span>
+              <strong data-lang="zh">双中子星潮汐演化</strong>
+              <strong data-lang="en">Binary neutron-star tidal evolution</strong>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      <section class="section" id="research">
+      <section class="section research-section" id="research">
         <div class="section-inner">
-          <div class="section-heading">
-            <p class="section-kicker">Research</p>
-            <h2 data-lang="zh">研究方向</h2>
-            <h2 data-lang="en">Research Directions</h2>
-          </div>
+          <header class="section-heading">
+            <div>
+              <p class="section-kicker">Research / 研究</p>
+              <h2 data-lang="zh">从波形到物理解释</h2>
+              <h2 data-lang="en">From waveforms to physical interpretation</h2>
+            </div>
+            <p data-lang="zh">以物理模型约束数据驱动方法，使快速推断不仅追求精度，也能服务于真实观测和中子星内部物理研究。</p>
+            <p data-lang="en">Physics-informed data-driven methods for fast, accurate, and interpretable analysis of real gravitational-wave observations.</p>
+          </header>
 
           <div class="research-list">
             <article>
-              <span>01</span>
-              <h3 data-lang="zh">波形生成、重构与去噪</h3>
-              <h3 data-lang="en">Waveform Generation, Reconstruction, and Denoising</h3>
-              <p data-lang="zh">利用深度学习模型学习致密双星波形族的低维结构，实现快速波形生成、信号重构和噪声背景下的稳健恢复。</p>
-              <p data-lang="en">Learning compact representations of waveform families for fast generation, signal reconstruction, and robust recovery under noisy observational conditions.</p>
+              <span class="research-index">01</span>
+              <div>
+                <h3 data-lang="zh">波形生成、重构与去噪</h3>
+                <h3 data-lang="en">Waveform Generation, Reconstruction, and Denoising</h3>
+                <p data-lang="zh">利用深度学习模型学习致密双星波形族的低维结构，实现快速波形生成、信号重构和噪声背景下的稳健恢复。</p>
+                <p data-lang="en">Learning compact representations of waveform families for fast generation, signal reconstruction, and robust recovery under noisy observational conditions.</p>
+              </div>
             </article>
             <article>
-              <span>02</span>
-              <h3 data-lang="zh">参数估计与不确定性量化</h3>
-              <h3 data-lang="en">Parameter Estimation and Uncertainty Quantification</h3>
-              <p data-lang="zh">面向 BNS、NSBH 和中等质量黑洞并合构建快速参数估计流程，关注后验结构、参数退化关系和模型不确定性的表达。</p>
-              <p data-lang="en">Developing fast inference workflows for BNS, NSBH, and intermediate-mass black hole mergers, with attention to posterior structure, degeneracies, and model uncertainty.</p>
+              <span class="research-index">02</span>
+              <div>
+                <h3 data-lang="zh">参数估计与不确定性量化</h3>
+                <h3 data-lang="en">Parameter Estimation and Uncertainty Quantification</h3>
+                <p data-lang="zh">面向 BNS、NSBH 和中等质量黑洞并合构建快速参数估计流程，关注后验结构、参数退化关系和模型不确定性的表达。</p>
+                <p data-lang="en">Developing fast inference workflows for BNS, NSBH, and intermediate-mass black hole mergers, with attention to posterior structure, degeneracies, and model uncertainty.</p>
+              </div>
             </article>
             <article>
-              <span>03</span>
-              <h3 data-lang="zh">信号识别、多频段探测与背景分析</h3>
-              <h3 data-lang="en">Signal Identification, Multiband Detection, and Backgrounds</h3>
-              <p data-lang="zh">研究引力波信号识别、多频段透镜化信号探测和随机引力波背景相关的数据分析问题，关注观测条件和算法稳健性。</p>
-              <p data-lang="en">Studying signal identification, multiband detection of lensed events, and data-analysis problems related to stochastic gravitational-wave backgrounds.</p>
+              <span class="research-index">03</span>
+              <div>
+                <h3 data-lang="zh">信号识别、多频段探测与背景分析</h3>
+                <h3 data-lang="en">Signal Identification, Multiband Detection, and Backgrounds</h3>
+                <p data-lang="zh">研究引力波信号识别、多频段透镜化信号探测和随机引力波背景相关的数据分析问题，关注观测条件和算法稳健性。</p>
+                <p data-lang="en">Studying signal identification, multiband detection of lensed events, and data-analysis problems related to stochastic gravitational-wave backgrounds.</p>
+              </div>
             </article>
             <article>
-              <span>04</span>
-              <h3 data-lang="zh">中子星内部物理与状态方程</h3>
-              <h3 data-lang="en">Neutron-Star Internal Physics and Equation of State</h3>
-              <p data-lang="zh">围绕中子星内部物理建立可解释的机器学习分析流程，从精细波形效应中提取潮汐参数和状态方程信息。</p>
-              <p data-lang="en">Building interpretable machine-learning workflows to extract tidal parameters and equation-of-state information from subtle waveform effects.</p>
+              <span class="research-index">04</span>
+              <div>
+                <h3 data-lang="zh">中子星内部物理与状态方程</h3>
+                <h3 data-lang="en">Neutron-Star Internal Physics and Equation of State</h3>
+                <p data-lang="zh">围绕中子星内部物理建立可解释的机器学习分析流程，从精细波形效应中提取潮汐参数和状态方程信息。</p>
+                <p data-lang="en">Building interpretable machine-learning workflows to extract tidal parameters and equation-of-state information from subtle waveform effects.</p>
+              </div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section visual-section" aria-label="Scientific visuals">
-        <div class="section-inner visual-grid">
-          <figure class="science-visual science-visual-wide">
-            <img src="assets/img/science-bns-merger.png" alt="Binary neutron star merger scientific illustration" />
-          </figure>
-          <figure class="science-visual">
-            <img src="assets/img/science-gw-ml.png" alt="Machine learning for gravitational-wave physics scientific illustration" />
-          </figure>
+      <section class="section science-section" id="science">
+        <div class="section-inner">
+          <header class="section-heading science-heading">
+            <div>
+              <p class="section-kicker">Scientific atlas / 科学图景</p>
+              <h2 data-lang="zh">让模型回到可解释的物理过程</h2>
+              <h2 data-lang="en">Returning models to interpretable physics</h2>
+            </div>
+            <p data-lang="zh">三组图景对应信号产生、联合观测与物理约束三个层次，构成从天体源到内部结构的完整研究链条。</p>
+            <p data-lang="en">Three views connect signal generation, coherent observation, and physical constraints from the astrophysical source to neutron-star interiors.</p>
+          </header>
+
+          <div class="science-stories">
+            <figure class="science-story">
+              <div class="science-image">
+                <img src="assets/img/science-tidal-evolution.png" alt="双中子星潮汐演化与引力波传播示意图" />
+              </div>
+              <figcaption>
+                <span>01 / Source dynamics</span>
+                <div>
+                  <h3 data-lang="zh">潮汐效应如何写入波形</h3>
+                  <h3 data-lang="en">How tidal effects enter the waveform</h3>
+                  <p data-lang="zh">双中子星旋近过程中，轨道收缩、潮汐形变和并合动力学共同改变引力波相位与振幅，为状态方程约束提供观测入口。</p>
+                  <p data-lang="en">Orbital decay, tidal deformation, and merger dynamics imprint measurable changes on gravitational-wave phase and amplitude.</p>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="science-story science-story-reverse">
+              <div class="science-image">
+                <img src="assets/img/science-multidetector-reconstruction.png" alt="多台引力波探测器联合重构同一宇宙信号的示意图" />
+              </div>
+              <figcaption>
+                <span>02 / Coherent inference</span>
+                <div>
+                  <h3 data-lang="zh">从多探测器数据恢复同一信号</h3>
+                  <h3 data-lang="en">Recovering one signal across multiple detectors</h3>
+                  <p data-lang="zh">联合不同探测器的应变数据和噪声特征，可提升微弱信号识别、波形重构以及源参数推断的稳定性。</p>
+                  <p data-lang="en">Coherent analysis combines detector responses and noise conditions to stabilize signal recovery and source inference.</p>
+                </div>
+              </figcaption>
+            </figure>
+
+            <figure class="science-story">
+              <div class="science-image">
+                <img src="assets/img/science-eos-inference.png" alt="由引力波观测约束中子星状态方程与内部结构的示意图" />
+              </div>
+              <figcaption>
+                <span>03 / Dense matter</span>
+                <div>
+                  <h3 data-lang="zh">由后验分布走向致密物质</h3>
+                  <h3 data-lang="en">From posterior structure to dense matter</h3>
+                  <p data-lang="zh">将质量、半径和潮汐形变的联合约束映射到状态方程空间，可以把机器学习推断转化为对中子星内部物理的可解释认识。</p>
+                  <p data-lang="en">Joint constraints on mass, radius, and tidal deformability connect machine-learning inference to neutron-star matter.</p>
+                </div>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
       <section class="section publication-section" id="publications">
-        <div class="section-inner">
-          <div class="section-heading compact-heading">
-            <p class="section-kicker">Publications</p>
-            <h2 data-lang="zh">学术论文</h2>
-            <h2 data-lang="en">Publications</h2>
-          </div>
+        <div class="section-inner publication-layout">
+          <header class="section-heading publication-heading">
+            <div>
+              <p class="section-kicker">Publications / 论文</p>
+              <h2 data-lang="zh">学术论文与研究记录</h2>
+              <h2 data-lang="en">Publications and research record</h2>
+            </div>
+            <p data-lang="zh">论文列表由 INSPIRE 信息同步维护，覆盖引力波机器学习、致密双星和空间引力波探测等方向。</p>
+            <p data-lang="en">The publication archive is synchronized with INSPIRE and spans gravitational-wave machine learning, compact binaries, and space-based detection.</p>
+          </header>
           <a class="publication-portal" href="publications.html">
-            <span data-lang="zh">查看学术论文</span>
-            <span data-lang="en">View Publications</span>
-            <strong id="publication-count">12</strong>
+            <span>
+              <small data-lang="zh">进入完整论文档案</small>
+              <small data-lang="en">Open the complete archive</small>
+              <strong data-lang="zh">查看学术论文</strong>
+              <strong data-lang="en">View publications</strong>
+            </span>
+            <b id="publication-count">12</b>
           </a>
         </div>
       </section>
@@ -154,9 +254,9 @@
       <section class="section contact-section" id="contact">
         <div class="section-inner contact-grid">
           <div>
-            <p class="section-kicker">Contact</p>
-            <h2 data-lang="zh">联系方式</h2>
-            <h2 data-lang="en">Contact</h2>
+            <p class="section-kicker">Contact / 联系</p>
+            <h2 data-lang="zh">欢迎讨论引力波与机器学习</h2>
+            <h2 data-lang="en">Let's discuss gravitational waves and machine learning</h2>
           </div>
           <div class="contact-actions">
             <a class="primary-link" href="mailto:sunmengfei2@gmail.com" data-i18n="emailMe">发送邮件</a>
@@ -169,6 +269,7 @@
     <footer class="site-footer">
       <p>
         <span>© 2026 孙孟飞 / Mengfei Sun</span>
+        <span>Gravitational-Wave Machine Learning</span>
       </p>
     </footer>
 
