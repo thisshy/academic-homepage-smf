@@ -276,6 +276,10 @@ h1 {
   line-height: 1.02;
 }
 
+.identity-line h1 {
+  font-size: clamp(38px, 4.2vw, 56px);
+}
+
 .role {
   max-width: 490px;
   margin-bottom: 0;
@@ -893,6 +897,10 @@ h1 {
 
   h1 {
     font-size: clamp(40px, 12vw, 56px);
+  }
+
+  .identity-line h1 {
+    font-size: clamp(32px, 9.5vw, 42px);
   }
 
   .role,
