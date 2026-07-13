@@ -357,5 +357,140 @@ document.querySelectorAll("[data-lang-switch]").forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.langSwitch));
 });
 
+function initScrollExperience() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const progressBar = document.querySelector(".scroll-progress span");
+  const revealSelector = ".section-heading, .research-list article, .science-story, .publication-portal, .contact-grid, .publication-card";
+  const observedRevealItems = new WeakSet();
+  let revealObserver;
+  let ticking = false;
+
+  document.body.classList.add("motion-ready");
+
+  function attachRevealItems() {
+    document.querySelectorAll(revealSelector).forEach((item, index) => {
+      if (observedRevealItems.has(item)) return;
+      observedRevealItems.add(item);
+      item.classList.add("reveal-item");
+      item.style.setProperty("--reveal-delay", `${Math.min(index % 4, 3) * 70}ms`);
+
+      if (reduceMotion.matches || !revealObserver) {
+        item.classList.add("is-visible");
+      } else {
+        revealObserver.observe(item);
+      }
+    });
+  }
+
+  if (!reduceMotion.matches && "IntersectionObserver" in window) {
+    revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+    );
+  }
+
+  attachRevealItems();
+
+  const sectionLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'))
+    .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
+    .filter((item) => item.section);
+  const parallaxImages = Array.from(document.querySelectorAll(".science-image img"));
+
+  function updateScrollEffects() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+
+    if (progressBar) {
+      progressBar.style.transform = `scaleX(${Math.min(1, Math.max(0, scrollTop / scrollRange))})`;
+    }
+
+    if (sectionLinks.length) {
+      const marker = window.innerHeight * 0.38;
+      let active = sectionLinks[0];
+      sectionLinks.forEach((item) => {
+        if (item.section.getBoundingClientRect().top <= marker) active = item;
+      });
+      sectionLinks.forEach((item) => {
+        if (item === active) item.link.setAttribute("aria-current", "true");
+        else item.link.removeAttribute("aria-current");
+      });
+    }
+
+    if (!reduceMotion.matches) {
+      parallaxImages.forEach((image) => {
+        const rect = image.parentElement.getBoundingClientRect();
+        const centerOffset = window.innerHeight / 2 - (rect.top + rect.height / 2);
+        const shift = Math.max(-18, Math.min(18, (centerOffset / window.innerHeight) * 22));
+        image.style.setProperty("--parallax-y", `${shift.toFixed(2)}px`);
+      });
+    }
+
+    ticking = false;
+  }
+
+  function requestScrollUpdate() {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateScrollEffects);
+  }
+
+  window.addEventListener("scroll", requestScrollUpdate, { passive: true });
+  window.addEventListener("resize", requestScrollUpdate);
+  requestScrollUpdate();
+
+  const count = document.querySelector("#publication-count");
+  if (count) {
+    const target = Number.parseInt(count.textContent, 10) || 0;
+    let hasAnimated = false;
+
+    function animateCount() {
+      if (hasAnimated) return;
+      hasAnimated = true;
+      if (reduceMotion.matches) {
+        count.textContent = String(target);
+        return;
+      }
+
+      const start = performance.now();
+      const duration = 720;
+      count.textContent = "0";
+
+      function frame(now) {
+        const progress = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        count.textContent = String(Math.round(target * eased));
+        if (progress < 1) window.requestAnimationFrame(frame);
+      }
+
+      window.requestAnimationFrame(frame);
+    }
+
+    if ("IntersectionObserver" in window && !reduceMotion.matches) {
+      const countObserver = new IntersectionObserver(
+        (entries, observer) => {
+          if (!entries.some((entry) => entry.isIntersecting)) return;
+          animateCount();
+          observer.disconnect();
+        },
+        { threshold: 0.5 },
+      );
+      countObserver.observe(count);
+    } else {
+      animateCount();
+    }
+  }
+
+  document.querySelectorAll("[data-lang-switch]").forEach((button) => {
+    button.addEventListener("click", () => window.requestAnimationFrame(attachRevealItems));
+  });
+}
+
 setLanguage(currentLang);
 initCosmicCanvas();
+initScrollExperience();
