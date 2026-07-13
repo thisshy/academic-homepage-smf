@@ -362,10 +362,6 @@ function initScrollExperience() {
   const progressBar = document.querySelector(".scroll-progress span");
   const revealSelector = ".section-heading, .research-list article, .science-story, .publication-portal, .contact-grid, .publication-card";
   const observedRevealItems = new WeakSet();
-  const heroSection = document.querySelector(".hero-section");
-  const heroCopy = document.querySelector(".hero-copy");
-  const heroMedia = document.querySelector(".hero-observation");
-  const scienceStories = Array.from(document.querySelectorAll(".science-story"));
   let revealObserver;
   let ticking = false;
 
@@ -404,43 +400,7 @@ function initScrollExperience() {
   const sectionLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'))
     .map((link) => ({ link, section: document.querySelector(link.getAttribute("href")) }))
     .filter((item) => item.section);
-  const atmosphereSections = Array.from(document.querySelectorAll(".hero-section, #research, #science, #publications, #contact"));
   const parallaxImages = Array.from(document.querySelectorAll(".science-image img"));
-
-  if (scienceStories.length && "IntersectionObserver" in window) {
-    const storyObserver = new IntersectionObserver(
-      (entries) => {
-        const activeEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!activeEntry) return;
-        scienceStories.forEach((story) => story.classList.toggle("is-active", story === activeEntry.target));
-      },
-      { threshold: [0.28, 0.5, 0.72], rootMargin: "-18% 0px -28% 0px" },
-    );
-    scienceStories.forEach((story) => storyObserver.observe(story));
-  } else if (scienceStories.length) {
-    scienceStories[0].classList.add("is-active");
-  }
-
-  if (heroSection && !reduceMotion.matches) {
-    heroSection.addEventListener("pointermove", (event) => {
-      const rect = heroSection.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-      const nx = x / Math.max(1, rect.width) - 0.5;
-      const ny = y / Math.max(1, rect.height) - 0.5;
-      heroSection.style.setProperty("--hero-copy-x", `${(-nx * 5).toFixed(2)}px`);
-      heroSection.style.setProperty("--hero-media-x", `${(nx * 12).toFixed(2)}px`);
-      heroSection.style.setProperty("--hero-media-y", `${(ny * 8).toFixed(2)}px`);
-    });
-
-    heroSection.addEventListener("pointerleave", () => {
-      heroSection.style.setProperty("--hero-copy-x", "0px");
-      heroSection.style.setProperty("--hero-media-x", "0px");
-      heroSection.style.setProperty("--hero-media-y", "0px");
-    });
-  }
 
   function updateScrollEffects() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -452,7 +412,7 @@ function initScrollExperience() {
 
     if (sectionLinks.length) {
       const marker = window.innerHeight * 0.38;
-      let active = null;
+      let active = sectionLinks[0];
       sectionLinks.forEach((item) => {
         if (item.section.getBoundingClientRect().top <= marker) active = item;
       });
@@ -460,23 +420,6 @@ function initScrollExperience() {
         if (item === active) item.link.setAttribute("aria-current", "true");
         else item.link.removeAttribute("aria-current");
       });
-    }
-
-    if (atmosphereSections.length) {
-      const marker = window.innerHeight * 0.42;
-      let activeAtmosphere = atmosphereSections[0];
-      atmosphereSections.forEach((section) => {
-        if (section.getBoundingClientRect().top <= marker) activeAtmosphere = section;
-      });
-      document.body.dataset.activeSection = activeAtmosphere.id || "home";
-    }
-
-    if (heroSection && heroCopy && heroMedia && !reduceMotion.matches) {
-      const heroRect = heroSection.getBoundingClientRect();
-      const progress = Math.min(1, Math.max(0, -heroRect.top / Math.max(1, heroRect.height * 0.72)));
-      heroSection.style.setProperty("--hero-copy-y", `${(-progress * 20).toFixed(2)}px`);
-      heroCopy.style.opacity = String(1 - progress * 0.54);
-      heroMedia.style.opacity = String(1 - progress * 0.68);
     }
 
     if (!reduceMotion.matches) {
