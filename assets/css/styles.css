@@ -727,22 +727,11 @@ h1 {
   line-height: 1.4;
 }
 
-.visit-counter[hidden] {
-  display: none;
-}
-
-.visit-counter-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: rgba(87, 226, 238, 0.58);
-  box-shadow: 0 0 8px rgba(87, 226, 238, 0.28);
-}
-
-.visit-counter strong {
-  color: rgba(178, 202, 205, 0.78);
-  font: inherit;
-  font-variant-numeric: tabular-nums;
+.visit-counter img {
+  display: block;
+  height: 18px;
+  opacity: 0.7;
+  filter: saturate(0.72);
 }
 
 .publication-page {
