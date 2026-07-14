@@ -1112,3 +1112,139 @@ h1 {
     transform: none;
   }
 }
+.publication-portal--inspire {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  background:
+    radial-gradient(circle at 82% 50%, rgba(87, 226, 238, 0.13), transparent 28%),
+    linear-gradient(125deg, rgba(8, 30, 38, 0.94), rgba(3, 18, 24, 0.98));
+  border-color: rgba(87, 226, 238, 0.32);
+  text-decoration: none;
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.publication-portal--inspire::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(87, 226, 238, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87, 226, 238, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(90deg, transparent, black 55%, black);
+}
+
+.publication-portal--inspire::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  bottom: 22%;
+  width: 62%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(87, 226, 238, 0.75), transparent);
+  transform: rotate(-8deg);
+  transform-origin: right center;
+}
+
+.inspire-copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.publication-portal--inspire .inspire-copy small {
+  color: #69e3ed;
+  letter-spacing: 0.14em;
+}
+
+.publication-portal--inspire .inspire-copy strong {
+  margin-top: 0.7rem;
+}
+
+.inspire-note {
+  margin-top: 0.65rem;
+  color: rgba(220, 238, 240, 0.66);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.inspire-mark {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 auto;
+  width: clamp(4.5rem, 7vw, 5.8rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(87, 226, 238, 0.42);
+  border-radius: 50%;
+  background: rgba(4, 22, 28, 0.72);
+  box-shadow: inset 0 0 28px rgba(87, 226, 238, 0.08), 0 0 32px rgba(87, 226, 238, 0.08);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.inspire-orbit {
+  position: absolute;
+  width: 78%;
+  height: 36%;
+  border: 1px solid rgba(87, 226, 238, 0.62);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  transition: transform 500ms ease;
+}
+
+.inspire-orbit::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f4c974;
+  box-shadow: 0 0 12px rgba(244, 201, 116, 0.8);
+}
+
+.inspire-arrow {
+  color: #f4fbfc;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.publication-portal--inspire:hover,
+.publication-portal--inspire:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(87, 226, 238, 0.72);
+  box-shadow: 0 22px 52px rgba(0, 8, 12, 0.3), 0 0 38px rgba(87, 226, 238, 0.08);
+}
+
+.publication-portal--inspire:hover .inspire-mark,
+.publication-portal--inspire:focus-visible .inspire-mark {
+  transform: scale(1.05);
+  box-shadow: inset 0 0 30px rgba(87, 226, 238, 0.14), 0 0 38px rgba(87, 226, 238, 0.2);
+}
+
+.publication-portal--inspire:hover .inspire-orbit,
+.publication-portal--inspire:focus-visible .inspire-orbit {
+  transform: rotate(20deg);
+}
+
+@media (max-width: 620px) {
+  .publication-portal--inspire {
+    align-items: center;
+  }
+
+  .inspire-mark {
+    width: 4rem;
+  }
+
+  .inspire-note {
+    max-width: 14rem;
+  }
+}
