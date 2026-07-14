@@ -713,6 +713,38 @@ h1 {
   color: var(--cyan);
 }
 
+.visit-counter {
+  width: min(var(--max), calc(100% - 48px));
+  margin: -15px auto 0;
+  padding: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: rgba(113, 135, 139, 0.72);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1.4;
+}
+
+.visit-counter[hidden] {
+  display: none;
+}
+
+.visit-counter-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(87, 226, 238, 0.58);
+  box-shadow: 0 0 8px rgba(87, 226, 238, 0.28);
+}
+
+.visit-counter strong {
+  color: rgba(178, 202, 205, 0.78);
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+}
+
 .publication-page {
   background: var(--bg);
 }
@@ -932,6 +964,10 @@ h1 {
   .section-inner,
   .hero-grid,
   .site-footer p {
+    width: min(var(--max), calc(100% - 28px));
+  }
+
+  .visit-counter {
     width: min(var(--max), calc(100% - 28px));
   }
 

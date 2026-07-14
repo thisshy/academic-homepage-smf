@@ -491,6 +491,49 @@ function initScrollExperience() {
   });
 }
 
+function initVisitCounter() {
+  const counter = document.querySelector("#visit-counter");
+  const count = document.querySelector("#visit-count");
+  if (!counter || !count) return;
+
+  const counterUrl = "https://api.counterapi.dev/v1/thisshy-academic-homepage-smf/homepage-visits";
+  const storageKey = "smf-homepage-visit-counted-at";
+  const sessionWindow = 30 * 60 * 1000;
+  let increment = true;
+
+  try {
+    const lastVisit = Number.parseInt(localStorage.getItem(storageKey), 10);
+    increment = !Number.isFinite(lastVisit) || Date.now() - lastVisit > sessionWindow;
+  } catch {
+    increment = true;
+  }
+
+  fetch(increment ? `${counterUrl}/up` : counterUrl, { cache: "no-store" })
+    .then((response) => {
+      if (!response.ok) throw new Error("Visit counter unavailable");
+      return response.json();
+    })
+    .then((data) => {
+      const total = Number(data.count ?? data.value);
+      if (!Number.isFinite(total)) return;
+
+      count.textContent = new Intl.NumberFormat().format(total);
+      counter.hidden = false;
+
+      if (increment) {
+        try {
+          localStorage.setItem(storageKey, String(Date.now()));
+        } catch {
+          // The visible count remains usable when storage is unavailable.
+        }
+      }
+    })
+    .catch(() => {
+      counter.hidden = true;
+    });
+}
+
 setLanguage(currentLang);
 initCosmicCanvas();
 initScrollExperience();
+initVisitCounter();
